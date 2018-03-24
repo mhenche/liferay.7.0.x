@@ -1,0 +1,47 @@
+<definition>
+	<command name="gotoFeed">
+		<execute function="AssertClick" locator1="Link#RSS" value1="RSS" />
+
+		<execute function="Pause" locator1="3000" />
+
+		<execute function="SelectWindow#selectPopUp" locator1="null" />
+
+		<execute function="AssertLocation#assertPartialLocation" value1="${rssURL}/rss" />
+	</command>
+
+	<command name="viewFeed">
+		<execute macro="RSS#gotoFeed">
+			<var name="rssURL" value="${rssURL}" />
+		</execute>
+
+		<execute macro="RSS#viewFeedTitle">
+			<var name="siteName" value="${siteName}" />
+		</execute>
+
+		<execute macro="RSS#viewFeedEntry">
+			<var name="entryContent" value="${entryContent}" />
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute function="Close#closeWindow" locator1="null" />
+	</command>
+
+	<command name="viewFeedEntry">
+		<for list="${entryTitle}" param="entryTitle">
+			<execute function="AssertTextEquals" locator1="RSS#ENTRY_TITLE" value1="${entryTitle}">
+				<var name="key_entryTitle" value="${entryTitle}" />
+			</execute>
+		</for>
+
+		<for list="${entryContent}" param="entryContent">
+			<execute function="AssertTextEquals" locator1="RSS#ENTRY_CONTENT" value1="${entryContent}">
+				<var name="key_entryContent" value="${entryContent}" />
+			</execute>
+		</for>
+	</command>
+
+	<command name="viewFeedTitle">
+		<execute function="AssertTextEquals" locator1="RSS#FEED_TITLE" value1="${siteName}" />
+		<execute function="AssertTextEquals" locator1="RSS#FEED_SUBTITLE" value1="${siteName}" />
+	</command>
+</definition>

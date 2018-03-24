@@ -1,0 +1,24 @@
+apply plugin: "com.liferay.osgi.portal.compat.defaults.plugin"
+
+dependencies {
+	testCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "2.0.0"
+}
+
+deploy {
+	deleteAllActions()
+
+	dependsOn = []
+	finalizedBy importFiles
+}
+
+importFiles {
+	from processResources
+
+	into {
+		liferay.appServerPortalDir
+	}
+}
+
+transformImportedFiles {
+	enabled = false
+}

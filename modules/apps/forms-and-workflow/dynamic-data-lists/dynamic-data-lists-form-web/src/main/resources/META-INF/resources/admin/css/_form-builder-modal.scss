@@ -1,0 +1,27 @@
+@import "form-builder-field-types-modal";
+
+.dynamic-content-height .modal-body {
+	overflow: auto;
+}
+
+.liferay-ddl-form-builder-modal-hidden {
+	display: none;
+}
+
+.liferay-ddl-form-builder-modal-content .lfr-ddm-form-field-container {
+	.ae-toolbar-add[style] {
+		border-color: #AEBCC8;
+	}
+
+	.ae-toolbar-add {
+		border-color: transparent;
+	}
+
+	.ae-ui div[style] {
+		position: fixed;
+	}
+}
+
+.form-builder-field-settings, .form-builder-field-settings div {
+	overflow: visible;
+}

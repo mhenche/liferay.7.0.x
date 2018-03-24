@@ -1,0 +1,9 @@
+Bundle-Name: Liferay Portal Monitoring
+Bundle-SymbolicName: com.liferay.portal.monitoring
+Bundle-Version: 5.0.3
+Import-Package:\
+	com.liferay.portal.kernel.portlet;version="[7.0.0,8)",\
+	\
+	*
+Liferay-Releng-Module-Group-Description:
+Liferay-Releng-Module-Group-Title:

@@ -1,0 +1,90 @@
+<definition>
+	<command name="configureAdvancedSearchPG">
+		<execute macro="Portlet#gotoPortletOptions">
+			<var name="portletName" value="Search" />
+			<var name="portletOption" value="Configuration" />
+		</execute>
+
+		<execute macro="IFrame#selectConfigurationFrame" />
+
+		<execute function="Click" locator1="Radio#ADVANCED" />
+		<execute function="Type" locator1="SearchConfiguration#ADVANCED_SEARCH_CONFIGURATION" value1="${advancedSearchConfiguration}" />
+		<execute macro="Button#clickSave" />
+		<execute function="SelectFrame" value1="relative=top" />
+	</command>
+
+	<command name="configureAssetType">
+		<execute macro="Portlet#gotoPortletOptions">
+			<var name="portletName" value="Search" />
+			<var name="portletOption" value="Configuration" />
+		</execute>
+
+		<execute macro="IFrame#selectConfigurationFrame" />
+
+		<var name="key_searchAssetType" value="${searchAssetType}" />
+
+		<execute function="AssertClick" locator1="SearchConfiguration#SEARCH_PORTLET_TAG_CONFIGURATION" value1="Configure" />
+
+		<execute function="AssertClick" locator1="SearchConfiguration#SEARCH_PORTLET_ASSET_TYPE_TAG_CONFIGURATION" value1="${searchAssetType}" />
+
+		<execute function="AssertClick" locator1="SearchConfiguration#SEARCH_PORTLET_CONFIGURATION_MOVE_TO_AVAILABLE_BUTTON" />
+
+		<execute macro="PortletEntry#save" />
+
+		<execute function="SelectFrame" value1="relative=top" />
+	</command>
+
+	<command name="searchPG">
+		<execute function="AssertElementPresent" locator1="Search#SEARCH_FIELD" />
+
+		<execute function="Type" locator1="Search#SEARCH_FIELD" value1="${searchTerm}" />
+
+		<if>
+			<isset var="localizationIDName" />
+			<then>
+				<var name="key_searchIDName" value="${localizationIDName}" />
+			</then>
+			<else>
+				<var name="key_searchIDName" value="Search" />
+			</else>
+		</if>
+
+		<var name="key_searchScope" value="${searchScope}" />
+
+		<if>
+			<equals arg1="${searchScope}" arg2="Everything" />
+			<then>
+				<execute function="Select" locator1="Select#SCOPE" value1="${searchScope}" />
+			</then>
+			<elseif>
+				<equals arg1="${searchScope}" arg2="This Site" />
+				<then>
+					<execute function="Select" locator1="Select#SCOPE" value1="${searchScope}" />
+				</then>
+			</elseif>
+		</if>
+
+		<execute function="KeyPress" locator1="Search#SEARCH_FIELD" value1="\RETURN" />
+	</command>
+
+	<command name="viewSearchNoAssetTitle">
+		<var name="key_searchAssetTitle" value="${searchAssetTitle}" />
+
+		<execute function="AssertTextNotPresent" locator1="SearchResults#ASSET_ENTRY_TABLE_TITLE" value1="${searchAssetTitle}" />
+	</command>
+
+	<command name="viewSearchResultsPG">
+		<var name="key_searchAssetTitle" value="${searchAssetTitle}" />
+		<var name="key_searchAssetType" value="${searchAssetType}" />
+
+		<execute function="AssertTextEquals#assertPartialText" locator1="SearchResults#ASSET_ENTRY_TABLE_TITLE_SPECIFIC" value1="${searchAssetTitle}" />
+		<execute function="AssertTextEquals#assertPartialText" locator1="SearchResults#ASSET_ENTRY_TABLE_TYPE_SPECIFIC" value1="${searchAssetType}" />
+
+		<if>
+			<isset var="searchAssetSummary" />
+			<then>
+				<execute function="AssertTextEquals#assertPartialText" locator1="SearchResults#ASSET_ENTRY_TABLE_SUMMARY_SPECIFIC" value1="${searchAssetSummary}" />
+			</then>
+		</if>
+	</command>
+</definition>

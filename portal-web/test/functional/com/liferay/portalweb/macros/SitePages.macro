@@ -1,0 +1,9 @@
+<definition>
+	<command name="togglePrivacy">
+		<execute function="Click" locator1="Dropdown#FILTER" />
+
+		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="${privacy} Pages">
+			<var name="key_menuItem" value="${privacy} Pages" />
+		</execute>
+	</command>
+</definition>

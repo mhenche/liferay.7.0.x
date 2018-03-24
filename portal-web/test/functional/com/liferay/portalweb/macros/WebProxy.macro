@@ -1,0 +1,11 @@
+<definition>
+	<command name="addCP">
+		<execute macro="IFrame#selectConfigurationFrame" />
+
+		<execute function="Type" locator1="TextInput#INITIAL_URL" value1="${initialURL}" />
+
+		<execute macro="PortletEntry#save" />
+
+		<execute function="SelectFrame" value1="relative=top" />
+	</command>
+</definition>

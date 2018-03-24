@@ -1,0 +1,11 @@
+;
+; Do not manually edit this file.
+;
+[subrepo]
+	autopull = false
+	cmdver = liferay
+	commit = 6fd0faf4aa94321a605ab9c25bbc4329ea7d50ff
+	mergebuttonmergecommits = false
+	mode = push
+	parent = 07e32a2a34c098fae43f52662b71d2a5437d7485
+	remote = git@github.com:liferay/com-liferay-flags.git

@@ -1,0 +1,11 @@
+;
+; Do not manually edit this file.
+;
+[subrepo]
+	autopull = false
+	cmdver = liferay
+	commit = afa3dd5d4708626bdb2c29a51da2429f4bc8b8cb
+	mergebuttonmergecommits = false
+	mode = push
+	parent = a68268a072c3c282c3138b52d93eef6eec8c1ba9
+	remote = git@github.com:liferay/com-liferay-nested-portlets.git

@@ -1,0 +1,11 @@
+;
+; Do not manually edit this file.
+;
+[subrepo]
+	autopull = false
+	cmdver = liferay
+	commit = c1ee611e340b745a7c5bcc530b82090b4d36b929
+	mergebuttonmergecommits = false
+	mode = push
+	parent = 0cc9f952c3e2c6fdf1904c1f95cc7dd3e2f75999
+	remote = git@github.com:liferay/com-liferay-portal-rules-engine.git

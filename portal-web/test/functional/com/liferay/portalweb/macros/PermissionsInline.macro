@@ -1,0 +1,288 @@
+<definition>
+	<command name="addOrRemoveViewPermissionFromAllRoles">
+		<for list="${roleList}" param="roleName">
+			<var name="roleName" value="${roleName}" />
+
+			<var method="StringUtil#replace('${roleName}', ' ', '-')" name="key_roleName" />
+			<var method="StringUtil#lowerCase('${key_roleName}')" name="key_roleName" />
+
+			<if>
+				<equals arg1="${addOrRemoveViewPermission}" arg2="Add" />
+				<then>
+					<execute function="Check" locator1="Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX" />
+				</then>
+				<elseif>
+					<equals arg1="${addOrRemoveViewPermission}" arg2="Remove" />
+					<then>
+						<execute function="Uncheck" locator1="Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX" />
+					</then>
+				</elseif>
+			</if>
+		</for>
+
+		<execute macro="Button#clickSave" />
+
+		<execute function="AssertTextEquals#assertPartialText" locator1="Permissions#SUCCESS_MESSAGE" value1="Your request completed successfully." />
+	</command>
+
+	<command name="assertDefaultPG">
+		<for list="${roleList}" param="roleName">
+			<var name="roleName" value="${roleName}" />
+
+			<var method="StringUtil#replace('${roleName}', ' ', '-')" name="key_roleName" />
+			<var method="StringUtil#lowerCase('${key_roleName}')" name="key_roleName" />
+
+			<if>
+				<or>
+					<equals arg1="${roleName}" arg2="Guest" />
+					<equals arg1="${roleName}" arg2="Site Member" />
+				</or>
+				<then>
+					<execute function="AssertNotChecked" locator1="Permissions#CONFIGURATION_PERMISSIONS_ADD_TO_PAGE_CHECKBOX" />
+				</then>
+				<else>
+					<execute function="AssertChecked" locator1="Permissions#CONFIGURATION_PERMISSIONS_ADD_TO_PAGE_CHECKBOX" />
+				</else>
+			</if>
+
+			<if>
+				<or>
+					<equals arg1="${roleName}" arg2="Guest" />
+					<equals arg1="${roleName}" arg2="Power User" />
+					<equals arg1="${roleName}" arg2="Site Member" />
+					<equals arg1="${roleName}" arg2="User" />
+				</or>
+				<then>
+					<execute function="AssertNotChecked" locator1="Permissions#CONFIGURATION_PERMISSIONS_CONFIGURATION_CHECKBOX" />
+					<execute function="AssertNotChecked" locator1="Permissions#CONFIGURATION_PERMISSIONS_PERMISSIONS_CHECKBOX" />
+				</then>
+				<else>
+					<execute function="AssertChecked" locator1="Permissions#CONFIGURATION_PERMISSIONS_CONFIGURATION_CHECKBOX" />
+					<execute function="AssertChecked" locator1="Permissions#CONFIGURATION_PERMISSIONS_PERMISSIONS_CHECKBOX" />
+				</else>
+			</if>
+
+			<if>
+				<or>
+					<equals arg1="${roleName}" arg2="Power User" />
+					<equals arg1="${roleName}" arg2="User" />
+				</or>
+				<then>
+					<execute function="AssertNotChecked" locator1="Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX" />
+				</then>
+				<else>
+					<execute function="AssertChecked" locator1="Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX" />
+				</else>
+			</if>
+		</for>
+	</command>
+
+	<command name="gotoConfigurationPG">
+		<if>
+			<isset var="portletOption" />
+			<then>
+				<var name="optionName" value="${portletOption}" />
+			</then>
+			<else>
+				<var name="optionName" value="Permissions" />
+			</else>
+		</if>
+
+		<execute macro="Portlet#gotoPortletOptions">
+			<var name="portletName" value="${portletName}" />
+			<var name="portletOption" value="${optionName}" />
+		</execute>
+
+		<execute macro="IFrame#selectDialogFrame" />
+	</command>
+
+	<command name="gotoDocumentsAndMediaDocumentPG">
+		<execute macro="LexiconEntry#gotoEntryMenuItem">
+			<var name="menuItem" value="Permissions" />
+			<var name="rowEntry" value="${dmDocumentTitle}" />
+		</execute>
+
+		<execute macro="IFrame#selectDialogFrame" />
+	</command>
+
+	<command name="gotoDocumentsAndMediaHomeFolderPG">
+		<execute macro="Navigator#gotoSitePage">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+		</execute>
+
+		<execute macro="DMDocument#enableActionsMenuOnPortlet" />
+
+		<execute macro="Navigator#gotoSitePage">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+		</execute>
+
+		<execute function="Click" locator1="Button#INFO" />
+
+		<execute function="Click" locator1="Icon#BODY_VERTICAL_ELLIPSIS" />
+
+		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Permissions">
+			<var name="key_menuItem" value="Permissions" />
+		</execute>
+
+		<execute macro="IFrame#selectDialogFrame" />
+	</command>
+
+	<command name="gotoMessageBoardsCategoryPG">
+		<execute function="AssertClick" locator1="MessageBoards#CATEGORY_LIST_CATEGORY" value1="${categoryName}">
+			<var name="key_categoryName" value="${categoryName}" />
+		</execute>
+
+		<execute function="AssertClick" locator1="Button#PERMISSIONS" value1="Permissions" />
+
+		<execute macro="IFrame#selectDialogFrame" />
+	</command>
+
+	<command name="gotoMessageBoardsPG">
+		<execute macro="Navigator#gotoPage">
+			<var name="pageName" value="${pageName}" />
+		</execute>
+
+		<execute function="AssertClick" locator1="Button#PERMISSIONS" value1="Permissions" />
+
+		<execute macro="IFrame#selectDialogFrame" />
+	</command>
+
+	<command name="gotoMessageBoardsThreadReplyPG">
+		<execute macro="Navigator#gotoSitePage">
+			<var name="pageName" value="${pageName}" />
+			<var name="siteName" value="${siteName}" />
+		</execute>
+
+		<execute function="AssertClick" locator1="MessageBoards#THREAD_LIST_THREAD" value1="${threadSubject}">
+			<var name="key_threadSubject" value="${threadSubject}" />
+		</execute>
+
+		<execute function="Click" locator1="MessageBoards#THREAD_REPLY_ACTIONS">
+			<var name="key_threadReplyBody" value="${threadReplyBody}" />
+		</execute>
+
+		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Permissions">
+			<var name="key_menuItem" value="Permissions" />
+		</execute>
+
+		<execute macro="IFrame#selectDialogFrame" />
+	</command>
+
+	<command name="gotoPagePG">
+		<execute macro="SitePageNavigator#gotoEditPage">
+			<var name="page" value="${pageName}" />
+		</execute>
+
+		<execute function="Click" locator1="Icon#HEADER_VERTICAL_ELLIPSIS" />
+
+		<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM">
+			<var name="key_menuItem" value="Permissions" />
+		</execute>
+
+		<execute macro="IFrame#selectDialogFrame" />
+	</command>
+
+	<command name="gotoPollPermissionsCP">
+		<execute macro="LexiconEntry#gotoEntryMenuItem">
+			<var name="menuItem" value="Permissions" />
+			<var name="rowEntry" value="${pollsQuestionTitle}" />
+		</execute>
+
+		<execute macro="IFrame#selectDialogFrame" />
+	</command>
+
+	<command name="gotoRolesAdminFromPortletConfiguration">
+		<execute function="AssertClick" locator1="AssetPermissions#ROLE_LINK" value1="${roleName}">
+			<var name="key_roleName" value="${roleName}" />
+		</execute>
+	</command>
+
+	<command name="gotoSitepageCP">
+		<var name="key_page" value="${pageName}" />
+
+		<execute function="Click#mouseOverClick" locator1="SitePages#SPECIFIC_PAGE_ELLIPSIS" />
+
+		<execute function="Click" locator1="SitePages#EDIT_SPECIFIC_PAGE" />
+
+		<execute function="Click" locator1="Icon#HEADER_VERTICAL_ELLIPSIS" />
+
+		<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM">
+			<var name="key_menuItem" value="Permissions" />
+		</execute>
+
+		<execute macro="IFrame#selectDialogFrame" />
+	</command>
+
+	<command name="gotoSiteTeamsCP">
+		<execute macro="ProductMenu#gotoSite">
+			<var name="site" value="${siteScopeName}" />
+		</execute>
+
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Members" />
+			<var name="panel" value="Site Administration" />
+			<var name="portlet" value="${portletName}" />
+		</execute>
+
+		<execute macro="LexiconEntry#gotoEntryMenuItem">
+			<var name="menuItem" value="Permissions" />
+			<var name="rowEntry" value="${teamName}" />
+		</execute>
+
+		<execute macro="IFrame#selectDialogFrame" />
+	</command>
+
+	<command name="gotoSiteTemplateCP">
+		<execute macro="SitePageNavigator#gotoEditPage">
+			<var name="page" value="${page}" />
+			<var name="sitePagePrivacy" value="${sitePagePrivacy}" />
+		</execute>
+
+		<execute function="Click" locator1="Icon#HEADER_VERTICAL_ELLIPSIS" />
+
+		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Permissions">
+			<var name="key_menuItem" value="Permissions" />
+		</execute>
+	</command>
+
+	<command name="gotoUserGroupSitePermissionsCP">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Users" />
+			<var name="panel" value="Control Panel" />
+			<var name="portlet" value="User Groups" />
+		</execute>
+
+		<execute function="Click" locator1="UserGroups#USER_GROUP_TABLE_ACTIONS">
+			<var name="key_userGroupName" value="${userGroupName}" />
+		</execute>
+
+		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="User Group Pages Permissions">
+			<var name="key_menuItem" value="User Group Pages Permissions" />
+		</execute>
+	</command>
+
+	<command name="gotoWCArticle">
+		<execute macro="LexiconEntry#gotoEntryMenuItem">
+			<var name="menuItem" value="Permissions" />
+			<var name="rowEntry" value="${webContentTitle}" />
+		</execute>
+
+		<execute macro="IFrame#selectPermissionsFrame" />
+	</command>
+
+	<command name="viewPermissionsChecked">
+		<var method="StringUtil#replace('${roleName}', ' ', '-')" name="key_roleName" />
+		<var method="StringUtil#lowerCase('${key_roleName}')" name="key_roleName" />
+
+		<execute function="AssertChecked" locator1="Permissions#${permissionDefinitionKey}" />
+	</command>
+
+	<command name="viewPermissionsRemoved">
+		<var method="StringUtil#replace('${roleName}', ' ', '-')" name="key_roleName" />
+		<var method="StringUtil#lowerCase('${key_roleName}')" name="key_roleName" />
+
+		<execute function="AssertNotChecked" locator1="Permissions#${permissionDefinitionKey}" />
+	</command>
+</definition>

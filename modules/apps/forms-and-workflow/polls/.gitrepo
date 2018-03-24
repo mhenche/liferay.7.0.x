@@ -1,0 +1,11 @@
+;
+; Do not manually edit this file.
+;
+[subrepo]
+	autopull = false
+	cmdver = liferay
+	commit = a5e96572b48e1ddd8b90fea61e1a1dd6cb425ac3
+	mergebuttonmergecommits = false
+	mode = push
+	parent = 0abee436987a085052e9c1b1b5bf12dd1205e75c
+	remote = git@github.com:liferay/com-liferay-polls.git

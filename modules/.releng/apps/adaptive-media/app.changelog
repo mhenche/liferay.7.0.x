@@ -1,0 +1,34 @@
+#
+# Liferay App Version 1.0.0
+#
+
+app.artifacts-1.0.0=\
+	com.liferay.adaptive.media.api-1.0.2.jar,\
+	com.liferay.adaptive.media.blogs.editor.configuration-1.0.1.jar,\
+	com.liferay.adaptive.media.blogs.item.selector.web-1.0.1.jar,\
+	com.liferay.adaptive.media.blogs.web-1.0.1.jar,\
+	com.liferay.adaptive.media.blogs.web.fragment-1.0.1.jar,\
+	com.liferay.adaptive.media.content.transformer.api-1.0.1.jar,\
+	com.liferay.adaptive.media.demo.data.creator.api-1.0.1.jar,\
+	com.liferay.adaptive.media.demo.data.creator.impl-1.0.1.jar,\
+	com.liferay.adaptive.media.document.library-1.0.2.jar,\
+	com.liferay.adaptive.media.document.library.item.selector.web-1.0.1.jar,\
+	com.liferay.adaptive.media.document.library.thumbnails-1.0.2.jar,\
+	com.liferay.adaptive.media.document.library.web-1.0.1.jar,\
+	com.liferay.adaptive.media.image.api-1.1.0.jar,\
+	com.liferay.adaptive.media.image.content.transformer-1.0.1.jar,\
+	com.liferay.adaptive.media.image.impl-1.0.2.jar,\
+	com.liferay.adaptive.media.image.item.selector.api-1.0.1.jar,\
+	com.liferay.adaptive.media.image.item.selector.impl-1.0.1.jar,\
+	com.liferay.adaptive.media.image.js.web-1.0.1.jar,\
+	com.liferay.adaptive.media.image.service-1.0.1.jar,\
+	com.liferay.adaptive.media.image.taglib-1.0.1.jar,\
+	com.liferay.adaptive.media.image.web-1.0.1.jar,\
+	com.liferay.adaptive.media.item.selector.upload.web-1.0.1.jar,\
+	com.liferay.adaptive.media.journal.editor.configuration-1.0.1.jar,\
+	com.liferay.adaptive.media.journal.web-1.0.1.jar,\
+	com.liferay.adaptive.media.web-1.0.1.jar
+
+app.change.log-1.0.0=LPS-71426 LPS-74064 LPS-74544 LPS-75359 LPS-75859 LPS-75900 LPS-75974 LPS-76043 LPS-76057 LPS-76151 LPS-76221 LPS-76226 LPS-76233 LPS-76347 LPS-76528 LPS-76705 LPS-76840 LPS-76924 LPS-76940 LPS-77287 LPS-77368
+
+app.git.id-1.0.0=eb4e8c0158fb1485a1647a2edcc2ebaad7650012

@@ -1,0 +1,9 @@
+Bundle-Name: Liferay Login Web
+Bundle-SymbolicName: com.liferay.login.web
+Bundle-Version: 2.0.6
+Import-Package:\
+	javax.net.ssl,\
+	\
+	*
+Liferay-Releng-Module-Group-Description:
+Liferay-Releng-Module-Group-Title:

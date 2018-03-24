@@ -1,0 +1,49 @@
+<definition>
+	<command name="addCP">
+		<execute macro="IFrame#selectConfigurationFrame" />
+
+		<execute function="Type" locator1="TextInput#SOURCE_URL" value1="${sourceURL}" />
+
+		<execute macro="PortletEntry#save" />
+
+		<execute function="SelectFrame" value1="relative=top" />
+	</command>
+
+	<command name="closeFrame">
+		<execute function="SelectFrame" value1="relative=top" />
+
+		<execute function="Click" locator1="Icon#CLOSE" />
+	</command>
+
+	<command name="selectCategoryFrame">
+		<execute function="SelectFrame" locator1="IFrame#SELECT_CATEGORY" />
+	</command>
+
+	<command name="selectConfigurationFrame">
+		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+	</command>
+
+	<command name="selectDialogFrame">
+		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+	</command>
+
+	<command name="selectEditAssetFrame">
+		<execute function="SelectFrame" locator1="IFrame#EDIT_ASSET" />
+	</command>
+
+	<command name="selectModalFrame">
+		<execute function="SelectFrame" locator1="IFrame#MODAL_IFRAME" />
+	</command>
+
+	<command name="selectPermissionsFrame">
+		<var name="key_iframeTitle" value="Permissions" />
+
+		<execute function="AssertElementPresent" locator1="IFrame#IFRAME_TITLE" />
+
+		<execute macro="IFrame#selectDialogFrame" />
+	</command>
+
+	<command name="selectTopFrame">
+		<execute function="SelectFrame" value1="relative=top" />
+	</command>
+</definition>

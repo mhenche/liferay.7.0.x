@@ -1,0 +1,32 @@
+<definition>
+	<command name="configureShowAllPG">
+		<execute macro="Portlet#gotoPortletOptions">
+			<var name="portletName" value="Media Gallery" />
+			<var name="portletOption" value="Configuration" />
+		</execute>
+
+		<execute macro="IFrame#selectConfigurationFrame" />
+
+		<execute function="Check" locator1="Checkbox#SHOW_ACTIONS_CHECKBOX" />
+
+		<execute macro="PortletEntry#save" />
+	</command>
+
+	<command name="viewCustomADTCarouselPG">
+		<execute function="AssertElementPresent" locator1="MediaGallery#ADT_CAROUSEL_ITEM" />
+		<execute function="AssertElementPresent" locator1="MediaGallery#ADT_CAROUSEL_PLAY_PAUSE" />
+		<execute function="AssertElementPresent" locator1="MediaGallery#ADT_CAROUSEL_PREVIOUS_ARROW" />
+		<execute function="AssertElementPresent" locator1="MediaGallery#ADT_CAROUSEL_NEXT_ARROW" />
+		<execute function="AssertElementPresent" locator1="MediaGallery#ADT_CAROUSEL_MENU_INDEX" />
+	</command>
+
+	<command name="viewShowAllPG">
+		<execute function="Click#waitForMenuToggleJSClick" locator1="Icon#BODY_VERTICAL_ELLIPSIS" />
+
+		<for list="Permissions,Add Subfolder,Multiple Media,Add Shortcut,Access from Desktop" param="menuItem">
+			<execute function="AssertElementPresent" locator1="MenuItem#ANY_MENU_ITEM">
+				<var name="key_menuItem" value="${menuItem}" />
+			</execute>
+		</for>
+	</command>
+</definition>

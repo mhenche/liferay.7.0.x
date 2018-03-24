@@ -1,0 +1,11 @@
+;
+; Do not manually edit this file.
+;
+[subrepo]
+	autopull = false
+	cmdver = liferay
+	commit = 61b72efcf42d286dbade85fd4351fe4f7d539287
+	mergebuttonmergecommits = false
+	mode = push
+	parent = f4b1867eb1a30df22e7aab8a764e4368f0426d9a
+	remote = git@github.com:liferay/com-liferay-notifications.git
